@@ -7,7 +7,9 @@
 </head>
 <body>
     {% for character in characters %}
-        <li>{{ character }}</li>
-    {% endfor %}}
+        <li>{{ character.character_name }}</li>
+    {% endfor %}
+    <br><br>
+    <a href="/character-creation">Create new character</a>
 </body>
 </html>

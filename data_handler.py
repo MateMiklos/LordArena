@@ -6,7 +6,7 @@ def get_characters_name(cursor):
     cursor.execute("""
         SELECT character_name FROM characters;
         """)
-    characters = cursor.fetchone()
+    characters = cursor.fetchall()
     return characters
 
 
