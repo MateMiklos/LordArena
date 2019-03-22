@@ -18,13 +18,14 @@ def route_game():
 @app.route('/characters')
 def route_characters():
     characters = data_handler.get_characters_name()
-    print(characters)
     return render_template('characters.html', characters=characters)
 
 
 @app.route('/character-creation')
 def route_character_creation():
-    return render_template('character-creation.html')
+    races = data_handler.get_races()
+    classes = data_handler.get_classes()
+    return render_template('character-creation.html', races=races, classes=classes)
 
 
 def main():

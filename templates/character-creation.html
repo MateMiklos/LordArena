@@ -3,6 +3,15 @@
     <title>Lord Arena | Character Creation</title>
 </head>
 <body>
-
+    <select>
+        {% for race in races %}
+            <option value="{{ race.race }}">{{ race.race }}</option>
+        {% endfor %}
+    </select>
+    <select>
+        {% for class in classes %}
+            <option value="{{ class.main_class }}">{{ class.main_class }}</option>
+        {% endfor %}
+    </select>
 </body>
 </html>
