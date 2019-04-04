@@ -23,9 +23,8 @@ def route_characters():
 
 @app.route('/character-creation')
 def route_character_creation():
-    races = data_handler.get_races()
-    classes = data_handler.get_classes()
-    return render_template('character-creation.html', races=races, classes=classes)
+    selector_lists = data_handler.selector_lists
+    return render_template('character-creation.html', selector_lists=selector_lists)
 
 
 def main():

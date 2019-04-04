@@ -1,17 +1,95 @@
 <html>
 <head>
     <title>Lord Arena | Character Creation</title>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="icon" href="../static/css/images/lord_icon.jpg" type="image/gif" sizes="16x16">
+
+    <script type="text/javascript" src="../static/js/character_creation.js" defer></script>
 </head>
-<body>
-    <select>
-        {% for race in races %}
-            <option value="{{ race.race }}">{{ race.race }}</option>
-        {% endfor %}
-    </select>
-    <select>
-        {% for class in classes %}
-            <option value="{{ class.main_class }}">{{ class.main_class }}</option>
-        {% endfor %}
-    </select>
+<body background="../static/css/images/fire.jpg">
+<div>
+    <table>
+        <tr>
+            {% for selector_list in selector_lists %}
+                <td class="table-element">
+                    <div class="card">
+                        <h1 class="card-header">{{ selector_list[0] }}</h1>
+                        <select class="{{ selector_list[1] }}">
+                            {% for elem in selector_list[4] %}
+                                <option class="{{ selector_list[2] }}" value="{{ elem.name }}">{{ elem.name }}</option>
+                            {% endfor %}
+                        </select>
+                        {% for elem in selector_list[4] %}
+                            <p class="{{ selector_list[3] }}">{{ elem.name }}</p>
+                        {% endfor %}
+                    </div>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header">RACE ABILITIES</h1>
+                    <p class="element">Element: {{ selector_lists[0][4][0].element }}</p>
+                </div>
+            </td>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header">MAIN CLASS ABILITIES</h1>
+                </div>
+            </td>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header">SUB CLASS ABILITIES</h1>
+                </div>
+            </td>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header">FINAL CLASS ABILITIES</h1>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header">ATTRIBUTE BONUSES</h1>
+                    <table>
+                        <thead>
+                        <th>Race</th>
+                        <th>Main Class</th>
+                        <th>Sub Class</th>
+                        <th>Final Class</th>
+                        </thead>
+                        <tbody>
+                        {% for selector_list in selector_lists %}
+                            <td class="attribute-table-element">
+                                <p class="strength-attribute">Strength: {{ selector_list[4][0].strength }}</p>
+                                <p class="intellect-attribute">Intellect: {{ selector_list[4][0].intellect }}</p>
+                                <p class="dexterity-attribute">Dexterity: {{ selector_list[4][0].dexterity }}</p>
+                            </td>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header"></h1>
+                </div>
+            </td>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header"></h1>
+                </div>
+            </td>
+            <td class="table-element">
+                <div class="card">
+                    <h1 class="card-header"></h1>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

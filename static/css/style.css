@@ -1,9 +1,120 @@
 h1 {
     text-align: center;
-    color: darkgoldenrod;
+    color: darkred;
 }
 
 a {
     text-align: center;
-    color: darkgoldenrod;
+    color: black;
+}
+
+p {
+    font-style: italic;
+    font-size: large;
+}
+
+th {
+    font-family: Ani;
+    font-size: large;
+    color: darkred;
+    background-position: left;
+}
+
+select {
+    font-style: italic;
+    font-size: large;
+    color: whitesmoke;
+}
+
+.table-element {
+    background-color: darkred;
+}
+
+.attribute-table-element {
+    background-color: whitesmoke;
+    width: 112px;
+}
+
+.card {
+    background-color: whitesmoke;
+    border-style: groove;
+    border-color: black;
+    width: 448px;
+    height: 300px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.card-header {
+    background-color: black;
+    font-family: Ani;
+}
+
+
+.race-selector {
+    text-align: center;
+    background-color: darkred;
+    border-bottom: 5px;
+    border-bottom-style: groove;
+    border-bottom-color: black;
+    border-top: 5px;
+    border-top-style: groove;
+    border-top-color: black;
+    border-left: 5px;
+    border-left-style: groove;
+    border-left-color: black;
+    border-right: 5px;
+    border-right-style: groove;
+    border-right-color: black;
+}
+
+.main-class-selector {
+    text-align: center;
+    background-color: darkred;
+    border-bottom: 5px;
+    border-bottom-style: groove;
+    border-bottom-color: black;
+    border-top: 5px;
+    border-top-style: groove;
+    border-top-color: black;
+    border-left: 5px;
+    border-left-style: groove;
+    border-left-color: black;
+    border-right: 5px;
+    border-right-style: groove;
+    border-right-color: black;
+}
+
+.sub-class-selector {
+    text-align: center;
+    background-color: darkred;
+    border-bottom: 5px;
+    border-bottom-style: groove;
+    border-bottom-color: black;
+    border-top: 5px;
+    border-top-style: groove;
+    border-top-color: black;
+    border-left: 5px;
+    border-left-style: groove;
+    border-left-color: black;
+    border-right: 5px;
+    border-right-style: groove;
+    border-right-color: black;
+}
+
+.final-class-selector {
+    text-align: center;
+    background-color: darkred;
+    border-bottom: 5px;
+    border-bottom-style: groove;
+    border-bottom-color: black;
+    border-top: 5px;
+    border-top-style: groove;
+    border-top-color: black;
+    border-left: 5px;
+    border-left-style: groove;
+    border-left-color: black;
+    border-right: 5px;
+    border-right-style: groove;
+    border-right-color: black;
 }
