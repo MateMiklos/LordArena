@@ -58,6 +58,31 @@ def get_final_classes(cursor):
     return classes
 
 
+@database_common.connection_handler
+def get_sub_classes_by_main_class_name(cursor, class_name):
+    cursor.execute("""
+        SELECT sub_classes.* FROM sub_classes
+        JOIN main_sub_ids ON sub_classes.id = main_sub_ids.sub_class_id
+        JOIN main_classes ON main_sub_ids.main_class_id = main_classes.id
+        WHERE main_classes.name = %(class_name)s
+        ORDER BY sub_classes.id;
+        """, {'class_name': class_name})
+    classes = cursor.fetchall()
+    return classes
+
+
+@database_common.connection_handler
+def get_final_classes_by_sub_class_name(cursor, class_name):
+    cursor.execute("""
+        SELECT final_classes.* FROM final_classes
+        JOIN sub_final_ids ON final_classes.id = sub_final_ids.final_class_id
+        JOIN sub_classes ON sub_final_ids.sub_class_id = sub_classes.id
+        WHERE sub_classes.name = %(class_name)s
+        """, {'class_name': class_name})
+    classes = cursor.fetchall()
+    return classes
+
+
 races = get_races()
 main_classes = [{'id': 1, 'name': 'warrior', 'strength': '4', 'intellect': '0', 'dexterity': '0'},
                 {'id': 2, 'name': 'mage', 'strength': '0', 'intellect': '4', 'dexterity': '0'},

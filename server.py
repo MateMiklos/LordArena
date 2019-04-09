@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, jsonify
 import data_handler
 
 
@@ -25,6 +25,21 @@ def route_characters():
 def route_character_creation():
     selector_lists = data_handler.selector_lists
     return render_template('character-creation.html', selector_lists=selector_lists)
+
+
+@app.route('/sub-classes/<class_name>')
+def route_sub_classes(class_name):
+    sub_classes = data_handler.get_sub_classes_by_main_class_name(class_name)
+    sub_classes_dict = {'sub_classes': sub_classes}
+    return jsonify(sub_classes_dict)
+
+
+@app.route('/final-classes/<class_name>')
+def route_final_classes(class_name):
+    print(class_name)
+    final_classes = data_handler.get_final_classes_by_sub_class_name(class_name)
+    final_classes_dict = {'final_classes': final_classes}
+    return jsonify(final_classes_dict)
 
 
 def main():
