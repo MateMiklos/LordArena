@@ -14,7 +14,7 @@ def get_characters_name(cursor):
 def create_character(cursor, character_name):
     cursor.execute("""
         INSERT INTO characters(character_name)
-        VALUES(%(character_name)s;
+        VALUES (%(character_name)s);
         """, {'character_name': character_name})
 
 
@@ -59,6 +59,17 @@ def get_final_classes(cursor):
 
 
 @database_common.connection_handler
+def get_main_class_abilities_by_main_class_name(cursor, class_name):
+    cursor.execute("""
+        SELECT main_class_abilities.name, main_class_abilities.ability FROM main_class_abilities
+        JOIN main_classes ON main_class_abilities.main_class_id = main_classes.id
+        WHERE main_classes.name = %(class_name)s
+        """, {'class_name': class_name})
+    abilities = cursor.fetchall()
+    return abilities
+
+
+@database_common.connection_handler
 def get_sub_classes_by_main_class_name(cursor, class_name):
     cursor.execute("""
         SELECT sub_classes.* FROM sub_classes
@@ -78,6 +89,7 @@ def get_final_classes_by_sub_class_name(cursor, class_name):
         JOIN sub_final_ids ON final_classes.id = sub_final_ids.final_class_id
         JOIN sub_classes ON sub_final_ids.sub_class_id = sub_classes.id
         WHERE sub_classes.name = %(class_name)s
+        ORDER BY final_classes.id;
         """, {'class_name': class_name})
     classes = cursor.fetchall()
     return classes

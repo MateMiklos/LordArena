@@ -1,11 +1,11 @@
 // let raceSelector = document.querySelector('.race-selector');
 // let raceElement = document.querySelector('.element');
 // let mainClassSelector = document.querySelector('.main-class-selector');
-let subClassSelectorOptions = document.querySelectorAll('.sub-class-selector-option');
-let subClassSelectables = document.querySelectorAll('.sub-class-selectables');
+// let subClassSelectorOptions = document.querySelectorAll('.sub-class-selector-option');
+// let subClassSelectables = document.querySelectorAll('.sub-class-selectables');
 // let subClassSelector = document.querySelector('.sub-class-selector');
-let finalClassSelectorOptions = document.querySelectorAll('.final-class-selector-option');
-let finalClassSelectables = document.querySelectorAll('.final-class-selectables');
+// let finalClassSelectorOptions = document.querySelectorAll('.final-class-selector-option');
+// let finalClassSelectables = document.querySelectorAll('.final-class-selectables');
 // let finalClassSelector = document.querySelector('.final-class-selector');
 // let strengthAttributes = document.querySelectorAll('.strength-attribute');
 // let intellectAttributes = document.querySelectorAll('.intellect-attribute');
@@ -82,24 +82,6 @@ let finalClassSelectables = document.querySelectorAll('.final-class-selectables'
 // }
 
 
-function subClassSelectorSetter(subclasses) {
-    for (let i = 0; i < subclasses.length; i++) {
-        subClassSelectorOptions[i].innerHTML = subclasses[i];
-        subClassSelectorOptions[i].value = subclasses[i];
-        subClassSelectables[i].innerHTML = subclasses[i];
-    }
-}
-
-
-function finalClassSelectorSetter(finalclasses) {
-    for (let i = 0; i < finalclasses.length; i++) {
-        finalClassSelectorOptions[i].innerHTML = finalclasses[i];
-        finalClassSelectorOptions[i].value = finalclasses[i];
-        finalClassSelectables[i].innerHTML = finalclasses[i];
-    }
-}
-
-
 // function finalClassSelectorSetter() {
 //     for (let i = 0; i < listOfSubClasses.length; i++) {
 //         if (subClassSelector.value === listOfSubClasses[i]) {
@@ -153,52 +135,236 @@ function finalClassSelectorSetter(finalclasses) {
 // eventListenersOnFire();
 
 
+// ########################################## API VERSION STARTS HERE #################################################
 
 
+// let mainClassSelector = document.querySelector('.main-class-selector');
+// let subClassSelector = document.querySelector('.sub-class-selector');
+// let subClassSelectorOptions = document.querySelectorAll('.sub-class-selector-option');
+// let subClassSelectables = document.querySelectorAll('.sub-class-selectables');
+// let finalClassSelector = document.querySelectorAll('.final-class-selector');
+// let finalClassSelectorOptions = document.querySelectorAll('.final-class-selector-option');
+// let finalClassSelectables = document.querySelectorAll('.final-class-selectables');
+// let strengthAttributes = document.querySelectorAll('.strength-attribute');
+// let intellectAttributes = document.querySelectorAll('.intellect-attribute');
+// let dexterityAttributes = document.querySelectorAll('.dexterity-attribute');
+//
+//
+// mainClassSelector.addEventListener('change', subClassChange);
+// subClassSelector.addEventListener('change', finalClassChange);
+// finalClassSelector.addEventListener('change', );
+//
+//
+// function subClassSelectorSetter(subclasses) {
+//     for (let i = 0; i < subclasses.length; i++) {
+//         subClassSelectorOptions[i].innerHTML = subclasses[i];
+//         subClassSelectorOptions[i].value = subclasses[i];
+//         subClassSelectables[i].innerHTML = subclasses[i];
+//     }
+// }
+//
+//
+// function finalClassSelectorSetter(finalclasses) {
+//     for (let i = 0; i < finalclasses.length; i++) {
+//         finalClassSelectorOptions[i].innerHTML = finalclasses[i];
+//         finalClassSelectorOptions[i].value = finalclasses[i];
+//         finalClassSelectables[i].innerHTML = finalclasses[i];
+//     }
+// }
+//
+//
+// function subClassAttributeSetter(attributes) {
+//     let subClassSelector = document.querySelector('.sub-class-selector');
+//     for (let i = 0; i < attributes.length; i++) {
+//         if (subClassSelector.value === attributes[i].name) {
+//             strengthAttributes[2].innerHTML = 'Strength: ' + attributes[i].strength;
+//             intellectAttributes[2].innerHTML = 'Intellect: ' + attributes[i].intellect;
+//             dexterityAttributes[2].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+//         }
+//     }
+// }
+//
+//
+// function finalClassAttributeSetter(attributes) {
+//     let finalClassSelector = document.querySelector('.final-class-selector');
+//     for (let i = 0; i < attributes.length; i++) {
+//         if (finalClassSelector.value === attributes[i].name) {
+//             strengthAttributes[3].innerHTML = 'Strength: ' + attributes[i].strength;
+//             intellectAttributes[3].innerHTML = 'Intellect: ' + attributes[i].intellect;
+//             dexterityAttributes[3].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+//         }
+//     }
+// }
+//
+//
+// function mainClassAbilitySetter(abilities) {
+//     let mainClassAbilities = document.querySelectorAll('.ability');
+//     for (let i = 0; i < abilities.length; i++) {
+//
+//     }
+// }
+//
+//
+// async function subClassChange(event) {
+//     const response = await fetch('/selector-data/' + event.target.value);
+//     const fetchedData = await response.json();
+//     let subClassList = [];
+//     for (let subClass of fetchedData.sub_classes_data) {
+//         subClassList.push(subClass.name);
+//     }
+//     subClassSelectorSetter(subClassList);
+//     finalClassChangeFromMain(subClassList[0]);
+//     subClassAttributeSetter(fetchedData.sub_classes_data);
+//     mainClassAbilitySetter(fetchedData.main_class_abilities);
+// }
+//
+//
+// async function finalClassChange(event) {
+//     const responseForFinalClasses = await fetch('/selector-data/' + event.target.value);
+//     const subClass = await responseForFinalClasses.json();
+//     const responseForSubclasses = await fetch('/selector-data/' + event.target.value);
+//     const mainClass = await responseForSubclasses.json();
+//     let finalClassList = [];
+//     for (let finalClass of subClass.final_classes_data) {
+//         finalClassList.push(finalClass.name);
+//     }
+//     finalClassSelectorSetter(finalClassList);
+//     subClassAttributeSetter(mainClass.sub_classes_data);
+//     finalClassAttributeSetter(subClass.final_classes_data);
+// }
+//
+//
+// async function finalClassChangeFromMain(name) {
+//     const response = await fetch('/final-classes/' + name);
+//     const subClass = await response.json();
+//     let finalClassList = [];
+//     for (let finalClass of subClass.final_classes_data) {
+//         finalClassList.push(finalClass.name);
+//     }
+//     finalClassSelectorSetter(finalClassList);
+//     finalClassAttributeSetter(subClass.final_classes_data);
+// }
 
 
-let mainClassSelector = document.querySelector('.main-class-selector');
-let subClassSelector = document.querySelector('.sub-class-selector');
+// ############################################## STRUCTURE ADAPTED ####################################################
 
-mainClassSelector.addEventListener('change', subClassChange);
 
-async function subClassChange(event) {
-    const response = await fetch('/sub-classes/' + event.target.value);
-    const mainClass = await response.json();
+let subClassSelectorOptions = document.querySelectorAll('.sub-class-selector-option');
+let subClassSelectables = document.querySelectorAll('.sub-class-selectables');
+let finalClassSelectorOptions = document.querySelectorAll('.final-class-selector-option');
+let finalClassSelectables = document.querySelectorAll('.final-class-selectables');
+let strengthAttributes = document.querySelectorAll('.strength-attribute');
+let intellectAttributes = document.querySelectorAll('.intellect-attribute');
+let dexterityAttributes = document.querySelectorAll('.dexterity-attribute');
+
+
+function eventListenersOnFire() {
+    let mainClassSelector = document.querySelector('.main-class-selector');
+    let subClassSelector = document.querySelector('.sub-class-selector');
+    let finalClassSelector = document.querySelectorAll('.final-class-selector');
+    let listOfClassSelectors = [mainClassSelector, subClassSelector, finalClassSelector];
+    for (let selector of listOfClassSelectors) {
+        selector.addEventListener('change', makeApiCall)
+    }
+}
+
+
+async function makeApiCall(event) {
+    const response = await fetch('/selector-data/' + event.target.value);
+    const classJsonData = await response.json();
+    changeSelectorsAndAttributes(classJsonData);
+}
+
+
+function changeSelectorsAndAttributes(classJsonData) {
+    let subClassesData = classJsonData.sub_classes_data;
     let subClassList = [];
-    for (let subClass of mainClass.sub_classes) {
-        subClassList.push(subClass.name)
+    for (let subClass of classJsonData.sub_classes_data) {
+        subClassList.push(subClass.name);
     }
-    // selectorSetter();
-    subClassSelectorSetter(subClassList);
-    finalClassChangeFromMain(subClassList[0]);
-    subClassSelector.addEventListener('change', finalClassChange)
+    let finalClassData = classJsonData.final_classes_data;
+
+    subClassSelectorSetter(subClassesData);
+    finalClassSelectorSetter(finalClassData);
+    subClassAttributeSetter(subClassesData);
+    mainClassAttributeSetter(classJsonData.main_classes_data);
+    finalClassAttributeSetter(finalClassData);
+    finalClassSetterFromMain(subClassList[0]);
+    mainClassAbilitySetter(classJsonData.main_class_abilities);
 }
 
 
-async function finalClassChange(event) {
-    const response = await fetch('/final-classes/' + event.target.value);
-    const subClass = await response.json();
-    console.log(subClass);
-    let finalClassList = [];
-    for (let finalClass of subClass.final_classes) {
-        console.log(finalClass.name);
-        finalClassList.push(finalClass.name);
-    }
-    console.log(finalClassList);
-    finalClassSelectorSetter(finalClassList);
+async function finalClassSetterFromMain(className) {
+    const response = await fetch('/selector-data/' + className);
+    const classJsonData = await response.json();
+    let finalClassData = classJsonData.final_classes_data;
+
+    finalClassSelectorSetter(finalClassData);
+    finalClassAttributeSetter(finalClassData);
 }
 
 
-async function finalClassChangeFromMain(name) {
-    const response = await fetch('/final-classes/' + name);
-    const subClass = await response.json();
-    console.log(subClass);
-    let finalClassList = [];
-    for (let finalClass of subClass.final_classes) {
-        console.log(finalClass.name);
-        finalClassList.push(finalClass.name);
+function subClassSelectorSetter(subClassList) {
+    for (let i = 0; i < subClassList.length; i++) {
+        subClassSelectorOptions[i].innerHTML = subClassList[i].name;
+        subClassSelectorOptions[i].value = subClassList[i].name;
+        subClassSelectables[i].innerHTML = subClassList[i].name;
     }
-    console.log(finalClassList);
-    finalClassSelectorSetter(finalClassList);
 }
+
+
+function finalClassSelectorSetter(finalClassList) {
+    for (let i = 0; i < finalClassList.length; i++) {
+        finalClassSelectorOptions[i].innerHTML = finalClassList[i].name;
+        finalClassSelectorOptions[i].value = finalClassList[i].name;
+        finalClassSelectables[i].innerHTML = finalClassList[i].name;
+    }
+}
+
+
+function mainClassAttributeSetter(attributes) {
+    let mainClassSelector = document.querySelector('.main-class-selector');
+    for (let i = 0; i < attributes.length; i++) {
+        if (mainClassSelector.value === attributes[i].name) {
+            strengthAttributes[1].innerHTML = 'Strength: ' + attributes[i].strength;
+            intellectAttributes[1].innerHTML = 'Intellect: ' + attributes[i].intellect;
+            dexterityAttributes[1].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+        }
+    }
+}
+
+
+function subClassAttributeSetter(attributes) {
+    let subClassSelector = document.querySelector('.sub-class-selector');
+    for (let i = 0; i < attributes.length; i++) {
+        if (subClassSelector.value === attributes[i].name) {
+            strengthAttributes[2].innerHTML = 'Strength: ' + attributes[i].strength;
+            intellectAttributes[2].innerHTML = 'Intellect: ' + attributes[i].intellect;
+            dexterityAttributes[2].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+        }
+    }
+}
+
+
+function finalClassAttributeSetter(attributes) {
+    let finalClassSelector = document.querySelector('.final-class-selector');
+    for (let i = 0; i < attributes.length; i++) {
+        if (finalClassSelector.value === attributes[i].name) {
+            strengthAttributes[3].innerHTML = 'Strength: ' + attributes[i].strength;
+            intellectAttributes[3].innerHTML = 'Intellect: ' + attributes[i].intellect;
+            dexterityAttributes[3].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+        }
+    }
+}
+
+
+function mainClassAbilitySetter(abilities) {
+    let mainClassAbilities = document.querySelectorAll('.main-class-ability');
+    for (let i = 0; i < abilities.length; i++) {
+        mainClassAbilities[i].innerHTML = abilities[i].name;
+    }
+}
+
+
+eventListenersOnFire();
+
