@@ -70,6 +70,37 @@ def get_main_class_abilities_by_main_class_name(cursor, class_name):
 
 
 @database_common.connection_handler
+def get_sub_class_abilities_by_sub_class_name(cursor, class_name):
+    cursor.execute("""
+        SELECT sub_class_abilities.name, sub_class_abilities.ability FROM sub_class_abilities
+        JOIN sub_classes ON sub_class_abilities.sub_class_id =sub_classes.id
+        WHERE sub_classes.name = %(class_name)s
+        """, {'class_name': class_name})
+    abilities = cursor.fetchall()
+    return abilities
+
+
+@database_common.connection_handler
+def get_sub_class_attributes_by_its_name(cursor, class_name):
+    cursor.execute("""
+        SELECT sub_classes.* FROM sub_classes
+        WHERE sub_classes.name = %(class_name)s
+        """, {'class_name': class_name})
+    abilities = cursor.fetchall()
+    return abilities
+
+
+@database_common.connection_handler
+def get_final_class_attributes_by_its_name(cursor, class_name):
+    cursor.execute("""
+        SELECT final_classes.* FROM final_classes
+        WHERE final.name = %(class_name)s
+        """, {'class_name': class_name})
+    abilities = cursor.fetchall()
+    return abilities
+
+
+@database_common.connection_handler
 def get_sub_classes_by_main_class_name(cursor, class_name):
     cursor.execute("""
         SELECT sub_classes.* FROM sub_classes

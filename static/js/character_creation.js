@@ -259,10 +259,11 @@ let dexterityAttributes = document.querySelectorAll('.dexterity-attribute');
 
 
 function eventListenersOnFire() {
+    let raceSelector = document.querySelector('.race-selector');
     let mainClassSelector = document.querySelector('.main-class-selector');
     let subClassSelector = document.querySelector('.sub-class-selector');
-    let finalClassSelector = document.querySelectorAll('.final-class-selector');
-    let listOfClassSelectors = [mainClassSelector, subClassSelector, finalClassSelector];
+    let finalClassSelector = document.querySelector('.final-class-selector');
+    let listOfClassSelectors = [raceSelector, mainClassSelector, subClassSelector, finalClassSelector];
     for (let selector of listOfClassSelectors) {
         selector.addEventListener('change', makeApiCall)
     }
@@ -277,30 +278,32 @@ async function makeApiCall(event) {
 
 
 function changeSelectorsAndAttributes(classJsonData) {
-    let subClassesData = classJsonData.sub_classes_data;
     let subClassList = [];
     for (let subClass of classJsonData.sub_classes_data) {
         subClassList.push(subClass.name);
     }
-    let finalClassData = classJsonData.final_classes_data;
 
-    subClassSelectorSetter(subClassesData);
-    finalClassSelectorSetter(finalClassData);
-    subClassAttributeSetter(subClassesData);
-    mainClassAttributeSetter(classJsonData.main_classes_data);
-    finalClassAttributeSetter(finalClassData);
+    subClassSelectorSetter(classJsonData.sub_classes_data);
+    finalClassSelectorSetter(classJsonData.final_classes_data);
     finalClassSetterFromMain(subClassList[0]);
+
+    raceAttributeSetter(classJsonData.race_data);
+    mainClassAttributeSetter(classJsonData.main_classes_data);
+    subClassAttributeSetter(classJsonData.sub_classes_data);
+    finalClassAttributeSetter(classJsonData.final_classes_data);
+    // subClassAttributeSetterOnItself(subClassList[0]);
+
     mainClassAbilitySetter(classJsonData.main_class_abilities);
+    subClassAbilitySetter(classJsonData.sub_class_abilities);
 }
 
 
 async function finalClassSetterFromMain(className) {
     const response = await fetch('/selector-data/' + className);
     const classJsonData = await response.json();
-    let finalClassData = classJsonData.final_classes_data;
-
-    finalClassSelectorSetter(finalClassData);
-    finalClassAttributeSetter(finalClassData);
+    finalClassSelectorSetter(classJsonData.final_classes_data);
+    finalClassAttributeSetter(classJsonData.final_classes_data);
+    subClassAbilitySetter(classJsonData.sub_class_abilities);
 }
 
 
@@ -322,6 +325,24 @@ function finalClassSelectorSetter(finalClassList) {
 }
 
 
+// # ATTRIBUTE SETTERS --->
+
+
+function raceAttributeSetter(attributes) {
+    let raceClassSelector = document.querySelector('.race-selector');
+    for (let i = 0; i < attributes.length; i++) {
+        if (raceClassSelector.value === attributes[i].name) {
+            strengthAttributes[0].innerHTML = 'Strength: ' + attributes[i].strength;
+            intellectAttributes[0].innerHTML = 'Intellect: ' + attributes[i].intellect;
+            dexterityAttributes[0].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+
+            let raceElement = document.querySelector('.element');
+            raceElement.innerHTML = 'Element: ' + attributes[i].element;
+        }
+    }
+}
+
+
 function mainClassAttributeSetter(attributes) {
     let mainClassSelector = document.querySelector('.main-class-selector');
     for (let i = 0; i < attributes.length; i++) {
@@ -329,6 +350,7 @@ function mainClassAttributeSetter(attributes) {
             strengthAttributes[1].innerHTML = 'Strength: ' + attributes[i].strength;
             intellectAttributes[1].innerHTML = 'Intellect: ' + attributes[i].intellect;
             dexterityAttributes[1].innerHTML = 'Dexterity: ' + attributes[i].dexterity;
+
         }
     }
 }
@@ -358,6 +380,22 @@ function finalClassAttributeSetter(attributes) {
 }
 
 
+// async function subClassAttributeSetterOnItself(className) {
+//     console.log(className);
+//     const response = await fetch('/selector-data/' + className);
+//     const classJsonData = await response.json();
+//     let subClassStrength = classJsonData.sub_class_attributes.strength;
+//     let subClassIntellect = classJsonData.sub_class_attributes.intellect;
+//     let subClassDexterity = classJsonData.sub_class_attributes.dexterity;
+//     strengthAttributes[2].innerHTML = 'Strength: ' + subClassStrength;
+//     intellectAttributes[2].innerHTML = 'Intellect: ' + subClassIntellect;
+//     dexterityAttributes[2].innerHTML = 'Dexterity: ' + subClassDexterity;
+// }
+
+
+// # ABILITY SETTERS --->
+
+
 function mainClassAbilitySetter(abilities) {
     let mainClassAbilities = document.querySelectorAll('.main-class-ability');
     for (let i = 0; i < abilities.length; i++) {
@@ -366,5 +404,12 @@ function mainClassAbilitySetter(abilities) {
 }
 
 
-eventListenersOnFire();
+function subClassAbilitySetter(abilities) {
+    let subClassAbilities = document.querySelectorAll('.sub-class-ability');
+    for (let i = 0; i < abilities.length; i++) {
+        subClassAbilities[i].innerHTML = abilities[i].name;
+    }
+}
 
+
+eventListenersOnFire();
